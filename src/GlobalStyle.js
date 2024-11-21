@@ -20,15 +20,15 @@ body {
     scrollbar-width: thin;
 }
 
-body::-webkit-scrollbar {
+::-webkit-scrollbar {
   width: 1.5rem;
 }
 
-body::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
    background-color: rgb(24 24 29);
 }
 
-body::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
  
   background: #fff;
     border: 5px solid transparent;
@@ -74,7 +74,7 @@ li {
 }
 
 .container {
-  max-width: 120rem;
+  max-width: 90rem;
   margin: 0 auto;
   
 }
@@ -122,9 +122,11 @@ li {
     text-transform: uppercase;
     font-size: 1.8rem;
     cursor: pointer;
-    }`
+    }
 
-    /* media queries  
+
+/* ===========================================
+/* media queries  
 ======================================= */
 /* px  */
 /* rem  */
@@ -132,3 +134,30 @@ li {
 /* 1500px */
 
 //998px
+@media (max-width:${({ theme }) => theme.media.tab}) {
+      .container{
+        padding: 0 3.2rem;
+      }
+
+        .grid-three-column {
+      grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width:${({ theme }) => theme.media.mobile}) {
+
+      html{
+        font-size: 50%;
+      }
+
+      .grid{
+        gap: 3.2rem;
+      }
+
+      .grid-two-column, .grid-three-column, .grid-four-column{
+        grid-template-columns: 1fr;
+      }
+}
+
+
+`;

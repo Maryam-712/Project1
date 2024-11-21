@@ -1,8 +1,11 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
+import { CgMenu , CgCloseR} from "react-icons/cg";
 
 const Navbar = () => {
+
+    const [openMenu, setOpenMenu] = useState(false);
 
     const Nav = styled.nav`
      .navbar-list {
@@ -43,9 +46,11 @@ const Navbar = () => {
       display: none;
     }
 
+
+    
     @media (max-width: ${({ theme }) => theme.media.mobile}) {
       .mobile-navbar-btn {
-        display: inline-block;
+        display: inline-block; 
         z-index: 999;
         border: ${({ theme }) => theme.colors.black};
 
@@ -55,7 +60,7 @@ const Navbar = () => {
         }
       }
 
-      /* hide the original nav menu  */
+      
       .navbar-list {
         width: 100vw;
         height: 100vh;
@@ -114,21 +119,35 @@ const Navbar = () => {
 
   return (
     <Nav>
-        <div className="menuicon">
+        <div className={openMenu ? "menuIcon active" : "menuIcon" }>
             <ul className="navbar-list">
                 <li>
-                    <NavLink className="navbar-link" to='/'>Home</NavLink>
+                    <NavLink className="navbar-link" 
+                    onClick={() => setOpenMenu(false)}
+                    to='/'>Home</NavLink>
                 </li>
                 <li>
-                    <NavLink className="navbar-link" to='/about'>About</NavLink>
+                    <NavLink className="navbar-link" 
+                    onClick={() => setOpenMenu(false)}
+                    to='/about'>About</NavLink>
                 </li>
                 <li>
-                    <NavLink className="navbar-link" to='/contact'>Contact</NavLink>
+                    <NavLink className="navbar-link" onClick={() => setOpenMenu(false)}
+                    to='/contact'>Contact</NavLink>
                 </li>
                 <li>
-                    <NavLink className="navbar-link" to='/service'>Service</NavLink>
+                    <NavLink className="navbar-link" onClick={() => setOpenMenu(false)}
+                    to='/service'>Service</NavLink>
                 </li>
             </ul>
+
+            <div className="mobile-navbar-btn">
+              <CgMenu name="menu-outline" className='mobile-nav-icon'
+              onClick={() => setOpenMenu(true)}/>
+              <CgCloseR name= "close-outline" className='close-outline mobile-nav-icon'
+              onClick={() => setOpenMenu(false)}/>
+            </div>
+
         </div>
     </Nav>
   )
